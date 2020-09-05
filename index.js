@@ -4,8 +4,6 @@ const path = require('path');
 // parse requests of content-type - application/json
 const bodyParser = require("body-parser");
 
-const generatePassword = require('password-generator');
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,4 +24,4 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 5000;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+console.log(`Server listening on ${port}`);

@@ -7,9 +7,6 @@ module.exports = app => {
     // Retrieve all interviews
     app.get("/interviews", interviews.findAll);
 
-    // Retrieve a single interview with interviewId
-    app.get("/interviews/:interviewId", interviews.findOne);
-
     // Update a interview with interviewId
     app.put("/interviews/:interviewId", interviews.update);
 

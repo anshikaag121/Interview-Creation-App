@@ -49,7 +49,6 @@ class Interviews extends React.Component {
             })
             .catch(err => {
                 console.log(err);
-
             });
     }
     render() {
@@ -57,8 +56,8 @@ class Interviews extends React.Component {
         return (
             <div>
                 {
-                    this.state.updateID ?
-                        <UpdateInterview interview={this.state.interviews[this.state.updateID - 1]} unsetUpdate = {this.unsetUpdate} />
+                    this.state.showUpdate ?
+                        <UpdateInterview interview={this.state.interviews[this.state.updateID - 1]} unsetUpdate={this.unsetUpdate} />
                         : null
                 }
                 <Table responsive hover>

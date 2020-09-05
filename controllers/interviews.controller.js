@@ -46,23 +46,6 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Interview with a interviewId
-exports.findOne = (req, res) => {
-    Interview.findById(req.params.interviewId, (err, data) => {
-        if (err) {
-            if (err.kind === "not_found") {
-                res.status(404).send({
-                    message: `Not found Interview with id ${req.params.interviewId}.`
-                });
-            } else {
-                res.status(500).send({
-                    message: "Error retrieving Interview with id " + req.params.interviewId
-                });
-            }
-        } else res.send(data);
-    });
-};
-
 // Update a Interview identified by the interviewId in the request
 exports.update = (req, res) => {
     // Validate Request
@@ -71,8 +54,6 @@ exports.update = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-
-    console.log(req.params);
 
     Interview.updateById(
         req.params.interviewId,
@@ -108,17 +89,5 @@ exports.delete = (req, res) => {
                 });
             }
         } else res.send({ message: `Interview was deleted successfully!` });
-    });
-};
-
-// Delete all Interviews from the database.
-exports.deleteAll = (req, res) => {
-    Interview.removeAll((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while removing all interviews."
-            });
-        else res.send({ message: `All Interviews were deleted successfully!` });
     });
 };

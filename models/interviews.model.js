@@ -37,7 +37,7 @@ checkIfCreatePossible = (newInterview, result) => {
     const { Interviewer, Interviewee } = newInterview;
     console.log(newStart, newEnd);
 
-    sql.query(`SELECT * FROM interviews where Interviewer = ? or Interviewee = ?`, [Interviewer, Interviewer], (err, res) => {
+    sql.query(`SELECT * FROM interviews where Interviewer = ?`, [Interviewer], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -57,7 +57,7 @@ checkIfCreatePossible = (newInterview, result) => {
             }
         });
     });
-    sql.query(`SELECT * FROM interviews where Interviewee = ? OR Interviewer = ?`, [Interviewee, Interviewee], (err, res) => {
+    sql.query(`SELECT * FROM interviews where Interviewee = ? `, [Interviewee], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -79,7 +79,7 @@ checkIfCreatePossible = (newInterview, result) => {
     result(null, null);
     return;
 };
-// console.log(x,y);
+
 checkIfUpdatePossible = (req, result) => {
     var id = req.id;
     const newInterview = req.interview;
@@ -161,7 +161,7 @@ Interview.create = (newInterview, result) => {
                         result(err, null);
                         return;
                     }
-                    console.log("created interview: ", { id: res.insertId, ...newInterview });
+                    console.log("Created interview: ", { id: res.insertId, ...newInterview });
                     result(null, { id: res.insertId, ...newInterview });
                 });
             }
@@ -193,7 +193,7 @@ Interview.getAll = result => {
     sql.query(`SELECT * FROM interviews`, (err, res) => {
         if (err) {
             console.log("error: ", err);
-            result(null, err);
+            result(err, null);
             return;
         }
         res.map(interview => {
@@ -201,7 +201,6 @@ Interview.getAll = result => {
             interview.startDate = x.toLocaleDateString();
             var y = new Date(interview.endDate);
             interview.endDate = y.toLocaleDateString();
-
         });
         console.log("interviews: ", res);
         result(null, res);
@@ -267,17 +266,5 @@ Interview.remove = (id, result) => {
     });
 };
 
-// Interview.removeAll = result => {
-//     sql.query("DELETE FROM interviews", (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             result(null, err);
-//             return;
-//         }
-
-//         console.log(`deleted ${res.affectedRows} interviews`);
-//         result(null, res);
-//     });
-// };
 
 module.exports = Interview;

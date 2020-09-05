@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Interviews from './components/interviews';
 import NewInterview from './components/newInterview';
-import UpdateInterview from './components/updateInterview';
 
 import {
     Collapse,
@@ -40,8 +39,6 @@ function Home() {
                 </Navbar>
                 <Route path="/" exact component={Interviews} />
                 <Route path="/newinterview" component={NewInterview} />
-                <Route path="/updateinterview" component={UpdateInterview} />
-                
             </Router>
         </div>
     );

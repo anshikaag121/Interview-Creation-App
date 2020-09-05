@@ -7,34 +7,44 @@ class Interviews extends React.Component {
         this.state = {
             interviews: [],
             showUpdate: false,
-            updateID: 0
+            updateInterview: null
         }
         this.update = this.update.bind(this);
         this.delete = this.delete.bind(this);
     }
+    
+    // Get list of interviews when the page loads
     componentDidMount() {
         this.getInterviews();
     }
+    
+    // Remove Update Interview Component when interview is updated
     unsetUpdate = () => {
         this.setState({
             showUpdate: false,
-            updateID: 0
+            updateID: null
         });
         this.getInterviews();
     }
+    
+    // fetch list of interviews
     getInterviews = () => {
         // Get the passwords and store them in state
         fetch('/interviews')
             .then(res => res.json())
             .then(interviews => this.setState({ interviews }));
     }
+
+    //Update interviews
     update = (e) => {
         console.log("Update: ", e);
         this.setState({
             showUpdate: true,
-            updateID: e
+            updateInterview: e
         })
     }
+
+    // Delete interview on the basis of Interview ID
     delete = (e) => {
         console.log("Delete: ", e);
         var url = '/interviews/' + e;
@@ -57,7 +67,7 @@ class Interviews extends React.Component {
             <div>
                 {
                     this.state.showUpdate ?
-                        <UpdateInterview interview={this.state.interviews[this.state.updateID - 1]} unsetUpdate={this.unsetUpdate} />
+                        <UpdateInterview interview={this.state.updateInterview} unsetUpdate={this.unsetUpdate} />
                         : null
                 }
                 <Table responsive hover>
@@ -85,7 +95,7 @@ class Interviews extends React.Component {
                                     <td>{interview.startTime}</td>
                                     <td>{interview.endDate}</td>
                                     <td>{interview.endTime}</td>
-                                    <td><Button id={interview.id} name={interview.id} onClick={() => this.update(interview.id)} > Update </Button></td>
+                                    <td><Button id={interview.id} name={interview.id} onClick={() => this.update(interview)} > Update </Button></td>
                                     <td><Button id={interview.id} name={interview.id} onClick={() => this.delete(interview.id)}> Delete </Button></td>
                                 </tr>
                             )

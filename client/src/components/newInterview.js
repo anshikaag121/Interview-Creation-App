@@ -17,9 +17,11 @@ class NewInterview extends React.Component {
         this.create = this.create.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+    // Update state variables when we fill the form
     handleChange(changeObject) {
         this.setState(changeObject, () => { console.log(this.state) });
     }
+    // Create Request for a new interview
     create = () => {
         // add entity - POST
         fetch("/interviews", {

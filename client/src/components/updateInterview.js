@@ -17,6 +17,8 @@ class UpdateInterview extends React.Component {
         this.update = this.update.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+
+    // Set Date in our required format
     setDate(e) {
         var date = new Date(e);
         var x = date.getFullYear();
@@ -34,15 +36,21 @@ class UpdateInterview extends React.Component {
         }
         return x;
     }
+    
+    // Set Start and End date in  required format 
     componentDidMount() {
         var x = this.setDate(this.state.startDate)
         this.setState({ startDate: x });
         x = this.setDate(this.state.endDate)
         this.setState({ endDate: x });
     }
+    
+    // Update state variables when we fill the form
     handleChange(changeObject) {
         this.setState(changeObject, () => { console.log(this.state) });
     }
+
+    // Update Interview on the basis of ID
     update = () => {
         // add entity - PUT
         fetch(`/interviews/${this.state.InterviewID}`, {

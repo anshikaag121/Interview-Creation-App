@@ -1,6 +1,8 @@
 # Interview Scheduling Application
 An Application to assist Scheduling and Managing Interviews.
 
+The app is deployed on (https://interviewbit-scheduler.herokuapp.com/)
+
 [Demo video of the application can be found here](https://bit.ly/320oFvA)
 
 # Technologies Used

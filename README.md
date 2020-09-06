@@ -44,7 +44,8 @@ npm start
 # Tasks Accomplished
 - Scheduling a New Interview is as simple as few clicks
 - No Participant have an Overlapping Interview
-- Check for Time entered are valid.
+- Made application Mobile friendly
+- Check for Time entered are valid
 - Usage of Industry level Technology Stack
 - Usage of REST full web services
 - CURD Based Application

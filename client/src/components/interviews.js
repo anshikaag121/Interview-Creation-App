@@ -30,9 +30,12 @@ class Interviews extends React.Component {
     // fetch list of interviews
     getInterviews = () => {
         // Get the passwords and store them in state
-        fetch('/interviews')
+        fetch('/interviews', {
+            "method": "GET" 
+        })
             .then(res => res.json())
-            .then(interviews => this.setState({ interviews }));
+            .then(interviews => this.setState({ interviews }))
+            .catch(err => console.log(err));
     }
 
     //Update interviews

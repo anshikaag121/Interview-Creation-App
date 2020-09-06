@@ -9,6 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+require("./routes/interviews.routes.js")(app);
 // Serve any static files
 app.use(express.static(path.join(__dirname, 'client/build')));
 // Handle React routing, return all requests to React app
@@ -20,7 +21,7 @@ app.get('*', function (req, res) {
 // app.use(express.static(path.join(__dirname, 'client/build')));
 
 // import Routes
-require("./routes/interviews.routes.js")(app);
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
